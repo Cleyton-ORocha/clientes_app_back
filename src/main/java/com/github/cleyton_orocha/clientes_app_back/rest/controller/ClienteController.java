@@ -14,6 +14,7 @@ import org.springframework.web.server.ResponseStatusException;
 import com.github.cleyton_orocha.clientes_app_back.model.entity.Cliente;
 import com.github.cleyton_orocha.clientes_app_back.model.repository.ClienteRepository;
 
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.PutMapping;
 
@@ -26,7 +27,7 @@ public class ClienteController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Cliente save(@RequestBody Cliente cliente) {
+    public Cliente save(@RequestBody @Valid Cliente cliente) {
         return clienteRepository.save(cliente);
     }
 
@@ -48,7 +49,7 @@ public class ClienteController {
 
     @PutMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public Cliente putMethodName(@RequestBody Cliente cliente) {
+    public Cliente putMethodName(@RequestBody @Valid Cliente cliente) {
         return clienteRepository.findById(cliente.getId())
                 .map(m -> {
                     cliente.setId(m.getId());

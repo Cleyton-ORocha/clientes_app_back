@@ -13,7 +13,7 @@ public class InitializationConfig {
     @Bean
     public MessageSource messageSource(){
         var messageSource = new ReloadableResourceBundleMessageSource();
-        messageSource.setBasename("messages");
+        messageSource.setBasename("classpath:messages");
         messageSource.setDefaultEncoding("ISO-8859-1");
         messageSource.setDefaultLocale(Locale.getDefault());
         return messageSource;
