@@ -15,6 +15,7 @@ import com.github.cleyton_orocha.clientes_app_back.model.entity.Cliente;
 import com.github.cleyton_orocha.clientes_app_back.model.repository.ClienteRepository;
 
 import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.PutMapping;
 
 @RestController
 @AllArgsConstructor
@@ -35,7 +36,7 @@ public class ClienteController {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
-    @DeleteMapping
+    @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public void deleteById(@PathVariable Integer id) {
         clienteRepository.findById(id)
@@ -43,6 +44,17 @@ public class ClienteController {
                     clienteRepository.delete(m);
                     return Void.TYPE;
                 }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    }
+
+    @PutMapping
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public Cliente putMethodName(@RequestBody Cliente cliente) {
+        return clienteRepository.findById(cliente.getId())
+                .map(m -> {
+                    cliente.setId(m.getId());
+                    return clienteRepository.save(cliente);
+                }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        
     }
 
 }
