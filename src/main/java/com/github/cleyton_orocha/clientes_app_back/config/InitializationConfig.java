@@ -14,7 +14,7 @@ public class InitializationConfig {
     public MessageSource messageSource(){
         var messageSource = new ReloadableResourceBundleMessageSource();
         messageSource.setBasename("classpath:messages");
-        messageSource.setDefaultEncoding("ISO-8859-1");
+        messageSource.setDefaultEncoding("utf-8");
         messageSource.setDefaultLocale(Locale.getDefault());
         return messageSource;
     }

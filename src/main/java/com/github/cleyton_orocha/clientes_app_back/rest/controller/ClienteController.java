@@ -1,10 +1,14 @@
 package com.github.cleyton_orocha.clientes_app_back.rest.controller;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -16,10 +20,11 @@ import com.github.cleyton_orocha.clientes_app_back.model.repository.ClienteRepos
 
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.PutMapping;
+
 
 @RestController
 @AllArgsConstructor
+@CrossOrigin("http://localhost:4200")
 @RequestMapping("api/clientes")
 public class ClienteController {
 
@@ -57,5 +62,11 @@ public class ClienteController {
                 }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         
     }
+
+    @GetMapping
+    public List<Cliente> getAll() {
+        return clienteRepository.findAll();
+    }
+    
 
 }

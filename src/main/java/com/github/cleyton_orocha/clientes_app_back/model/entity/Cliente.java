@@ -37,7 +37,7 @@ public class Cliente {
     @CPF(message = "{campo.cpf.invalido}")
     @NotNull(message = "{campo.cpf.obrigatorio}")
     @Column(nullable = false, length = 11)
-    private String CPF;
+    private String cpf;
 
     @Column(name = "data_cadastro")
     @JsonFormat(pattern = "dd/MM/yyyy")
