@@ -13,7 +13,7 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Servico {
+public class ServicoPrestado {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

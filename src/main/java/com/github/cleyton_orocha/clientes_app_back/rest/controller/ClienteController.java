@@ -24,7 +24,7 @@ import lombok.AllArgsConstructor;
 @RestController
 @AllArgsConstructor
 @RequestMapping("api/clientes")
-@CrossOrigin("http://127.0.0.1:4200")
+@CrossOrigin(origins = "http://localhost:4200")
 public class ClienteController {
 
     private final ClienteRepository clienteRepository;
@@ -42,7 +42,6 @@ public class ClienteController {
     }
 
     @DeleteMapping("{id}")
-    @ResponseStatus(HttpStatus.NOT_FOUND)
     public void deleteById(@PathVariable Integer id) {
         clienteRepository.findById(id)
                 .map(m -> {
@@ -52,7 +51,6 @@ public class ClienteController {
     }
 
     @PutMapping
-    @ResponseStatus(HttpStatus.NO_CONTENT)
     public Cliente putMethodName(@RequestBody @Valid Cliente cliente) {
         return clienteRepository.findById(cliente.getId())
                 .map(m -> {
