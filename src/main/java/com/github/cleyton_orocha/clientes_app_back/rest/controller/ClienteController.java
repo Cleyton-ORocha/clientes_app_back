@@ -21,11 +21,10 @@ import com.github.cleyton_orocha.clientes_app_back.model.repository.ClienteRepos
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 
-
 @RestController
 @AllArgsConstructor
-@CrossOrigin("http://localhost:4200")
 @RequestMapping("api/clientes")
+@CrossOrigin("http://127.0.0.1:4200")
 public class ClienteController {
 
     private final ClienteRepository clienteRepository;
@@ -60,13 +59,12 @@ public class ClienteController {
                     cliente.setId(m.getId());
                     return clienteRepository.save(cliente);
                 }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        
+
     }
 
     @GetMapping
     public List<Cliente> getAll() {
         return clienteRepository.findAll();
     }
-    
 
 }
