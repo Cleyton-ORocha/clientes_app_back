@@ -32,7 +32,7 @@ public class Cliente {
     
     @NotEmpty(message = "{campo.nome.obrigatorio}")
     @Column(nullable = false, length = 150)
-    private String name;
+    private String nome;
 
     @CPF(message = "{campo.cpf.invalido}")
     @NotNull(message = "{campo.cpf.obrigatorio}")
