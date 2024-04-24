@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,6 +26,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/servico-prestado")
+@CrossOrigin(origins = "http://localhost:4200")
 public class ServicoPrestadoController {
     private final ClienteRepository clienteRepository;
     private final ServicoPrestadoRepository servicoPrestadoRepository;
@@ -32,7 +34,7 @@ public class ServicoPrestadoController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ServicoPrestado saveServicoPrestado(@RequestBody ServicoPrestadoDTO servicoPrestadoDTO) {
-        LocalDate date = LocalDate.parse(servicoPrestadoDTO.getData(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        LocalDate date = LocalDate.parse(servicoPrestadoDTO.getData(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
         ServicoPrestado servicoPrestadoRequest = ServicoPrestado.builder()
                 .descricao(servicoPrestadoDTO.getDescricao())

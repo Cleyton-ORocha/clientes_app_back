@@ -3,6 +3,8 @@ package com.github.cleyton_orocha.clientes_app_back.model.entity;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -33,5 +35,6 @@ public class ServicoPrestado {
     private BigDecimal preco;
 
     @Column
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     private LocalDate data;
 }
